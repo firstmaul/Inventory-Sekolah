@@ -15,6 +15,7 @@ namespace BS.Inventory.App
             List<StudentTable> studentTableMaster = new List<StudentTable>();
             List<Seat> seatMaster = new List<Seat>();
             Classroom tempClassroom = null;
+            string answer = string.Empty;
 
             Console.WriteLine("/*************************************************************");
             Console.WriteLine("********* Welcome to the elementary inventory console ********");
@@ -25,6 +26,7 @@ namespace BS.Inventory.App
             studentTableMaster.Add(getStudentTableDummy());
             seatMaster.Add(getSeatDummy());
 
+            ReAsk1:
             Console.WriteLine("==============================================================");
             Console.WriteLine("Pilihan menu");
             Console.WriteLine("1. Entry kelas baru");
@@ -44,6 +46,13 @@ namespace BS.Inventory.App
                 }
                 EditClass(tempClassroom.name, classroomMaster, studentTableMaster, seatMaster);
             }
+            else if (menuNumber == 2) {
+
+            }
+
+            answer = getStringInput();
+            if (answer.Equals("N", StringComparison.InvariantCultureIgnoreCase)) return;
+            else if (!(answer.Equals("Y", StringComparison.InvariantCultureIgnoreCase))) { goto ReAsk1; }
 
         }
 
@@ -143,8 +152,8 @@ namespace BS.Inventory.App
                     Console.WriteLine(String.Format("kursi \t = {0}", maxCapacity));
                     Console.WriteLine("============= Kapasitas Aktual ===============================");
                     Console.WriteLine(String.Format("murid \t = {0}", 0));
-                    Console.WriteLine(String.Format("meja  \t = {0}", maxRow * maxColumn));
-                    Console.WriteLine(String.Format("kursi \t = {0}", maxCapacity));
+                    Console.WriteLine(String.Format("meja  \t = {0}", currClassroom.studentTableList.Count()));
+                    Console.WriteLine(String.Format("kursi \t = {0}", currClassroom.seatList.Count()));
                     Console.WriteLine("==============================================================");
                     Console.Write("Input jumlah meja yang akan di assign: ");
                     tableCount = getIntInput();
